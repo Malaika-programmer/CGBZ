@@ -518,6 +518,212 @@ svg line, svg circle {
     display: block; /* Show on hover or focus */
 }
 /* Responsive adjustments */
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 360px;
+    max-height: 85vh;
+  }
+
+  h1 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+
+  .setup label,
+  .word-input p {
+    font-size: 0.9em;
+  }
+
+  .setup input,
+  .setup select,
+  .word-input input {
+    padding: 8px;
+    font-size: 0.9em;
+    max-width: 220px;
+  }
+
+  .setup button,
+  #hint,
+  #back,
+  #submit-word,
+  #replay,
+  #close-report {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+  .game p {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    gap: 5px 10px;
+  }
+
+  #timer {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
+  svg {
+    width: 180px;
+    height: 180px;
+  }
+
+  #word-display {
+    font-size: 1.6em;
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+  }
+
+  .alphabet {
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    gap: 5px;
+    max-width: 280px;
+  }
+
+  .alphabet button {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+
+  .game-buttons-container {
+    gap: 8px;
+  }
+
+  .game-buttons-container button {
+    min-width: 90px;
+    max-width: 130px;
+    font-size: 0.9em;
+  }
+
+  #status {
+    font-size: 1.1em;
+    margin-top: 10px;
+  }
+
+  .report-content {
+    padding: 15px;
+    max-width: 280px;
+  }
+
+  .report-content h2 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+
+  .report-content p {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+
+  .container::after {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #FFD700;
+  }
+}
+
+/* Larger Mobile Devices and Small Tablets (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    max-height: 90vh;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .setup label,
+  .word-input p {
+    font-size: 1em;
+  }
+
+  .setup input,
+  .setup select,
+  .word-input input {
+    padding: 10px;
+    font-size: 1em;
+    max-width: 280px;
+  }
+
+  .setup button,
+  #hint,
+  #back,
+  #submit-word,
+  #replay,
+  #close-report {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .game p {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+  }
+
+  #timer {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .game-area {
+    gap: 25px;
+  }
+
+  svg {
+    width: 220px;
+    height: 220px;
+  }
+
+  #word-display {
+    font-size: 2em;
+    letter-spacing: 7px;
+  }
+
+  .alphabet {
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    gap: 6px;
+    max-width: 350px;
+  }
+
+  .alphabet button {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  .game-buttons-container {
+    gap: 10px;
+  }
+
+  .game-buttons-container button {
+    min-width: 100px;
+    max-width: 150px;
+    font-size: 1em;
+  }
+
+  #status {
+    font-size: 1.3em;
+  }
+
+  .report-content {
+    padding: 20px;
+    max-width: 350px;
+  }
+
+  .report-content h2 {
+    font-size: 1.5em;
+  }
+
+  .report-content p {
+    font-size: 1em;
+  }
+}
   @media (max-width: 320px) {
         .container { padding: 1.5vw; gap: 1rem; }
         h1 { font-size: 3.5vw; margin-bottom: 1rem; }
