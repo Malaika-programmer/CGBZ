@@ -1,0 +1,726 @@
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', sans-serif;
+      color: #E0E0E0;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      background: url(/image/bg.png);
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Background overlay for a richer, atmospheric look */
+    .background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Apply gradient AND the image, then blur the entire overlay */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%), url('image/bg.png');
+      /* Ensure 'image/bg.png' is the correct path to your background image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(5px);
+      /* Add a blur filter */
+      z-index: -1;
+      /* Place behind content */
+    }
+
+    .container {
+      background-color: rgba(20, 20, 20, 0.85);
+      /* Darker, almost black with slight transparency */
+      padding: 40px;
+      /* Increased padding */
+      border-radius: 15px;
+      /* More rounded corners */
+      max-width: 900px;
+      /* Wider container for game elements */
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      /* Stronger, more defined shadow */
+      border: 1px solid rgba(70, 70, 70, 0.5);
+      /* Subtle border for definition */
+      animation: fadeIn 1s ease-out;
+      /* Fade-in animation for container */
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Typography --- */
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.8em;
+      margin-bottom: 30px;
+      color: #FFD700;
+      /* Gold color for highlight */
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 0 5px rgba(255, 215, 0, 0.8);
+      /* Glow effect */
+      letter-spacing: 2px;
+    }
+
+    /* --- Setup Section & Word Input Section --- */
+    .setup,
+    .word-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 20px;
+    }
+
+    .setup label,
+    .word-input p {
+      font-size: 1.2em;
+      color: #FFD700;
+      margin-bottom: 5px;
+    }
+
+    .setup input,
+    .setup select,
+    .word-input input {
+      padding: 12px 15px;
+      font-size: 1.1em;
+      border: 1px solid #7e57c2;
+      border-radius: 8px;
+      background-color: rgba(40, 40, 40, 0.9);
+      color: #E0E0E0;
+      width: 80%;
+      max-width: 300px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .setup input:focus,
+    .setup select:focus,
+    .word-input input:focus {
+      outline: none;
+      border-color: #2575FC;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.6);
+    }
+
+    .setup>div,
+    .word-input>div {
+      /* For role-select and difficulty/length info */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* --- Buttons (General Styling) --- */
+    .setup button,
+    #hint,
+    #back,
+    #end-game,
+    #replay,
+    #submit-word,
+    #close-report {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* Specific button styles */
+    #start-game,
+    #replay,
+    #close-report {
+      background: linear-gradient(to right, #6A11CB 0%, #2575FC 100%);
+    }
+
+    #submit-word {
+      background: linear-gradient(to right, #28a745 0%, #1e7e34 100%);
+      /* Green for submit */
+    }
+
+    #back {
+      background: linear-gradient(to right, #6c757d 0%, #495057 100%);
+    }
+
+    #hint {
+      background: linear-gradient(to right, #ffc107 0%, #e0a800 100%);
+      color: #333;
+    }
+    #back-to-menu, #back { /* Secondary buttons */
+    background: linear-gradient(to right, #6c757d 0%, #495057 100%); /* Grey gradient */
+}
+
+
+    #end-game {
+      background: linear-gradient(to right, #dc3545 0%, #bd2130 100%);
+    }
+
+    /* Button Hover Effects */
+    .setup button:hover,
+    #hint:hover:not(:disabled),
+    #back:hover,
+    #end-game:hover,
+    #replay:hover,
+    #submit-word:hover,
+    #close-report:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    #start-game:hover,
+    #replay:hover,
+    #close-report:hover {
+      background: linear-gradient(to right, #2575FC 0%, #6A11CB 100%);
+    }
+
+    #submit-word:hover {
+      background: linear-gradient(to right, #1e7e34 0%, #28a745 100%);
+    }
+
+    #back:hover {
+      background: linear-gradient(to right, #495057 0%, #6c757d 100%);
+    }
+
+    #hint:hover:not(:disabled) {
+      background: linear-gradient(to right, #e0a800 0%, #ffc107 100%);
+    }
+
+    #end-game:hover {
+      background: linear-gradient(to right, #bd2130 0%, #dc3545 100%);
+    }
+
+    .setup button::before,
+    #hint::before,
+    #back::before,
+    #end-game::before,
+    #replay::before,
+    #submit-word::before,
+    #close-report::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transform: skewX(-20deg);
+      transition: left 0.4s ease-in-out;
+    }
+
+    .setup button:hover::before,
+    #hint:hover::before,
+    #back:hover::before,
+    #end-game:hover::before,
+    #replay:hover::before,
+    #submit-word:hover::before,
+    #close-report:hover::before {
+      left: 100%;
+    }
+
+    /* Disabled button state */
+    #hint:disabled,
+    .alphabet button:disabled {
+      background-color: #555 !important;
+      color: #AAA !important;
+      cursor: not-allowed !important;
+      opacity: 0.7;
+      border-color: #555 !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    #hint:disabled::before,
+    .alphabet button:disabled::before {
+      display: none;
+    }
+
+     .game-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+.game-buttons-container button {
+    flex-grow: 1; /* Allows buttons to grow and fill space */
+    min-width: 120px; /* Minimum width for buttons to prevent squishing */
+    max-width: 180px; /* Max width to keep them from becoming too large */
+    /* Inherit general button styles, no need to duplicate padding/font-size here unless specific override */
+}
+
+    /* --- Game Section --- */
+    .game p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      color: #B0B0B0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 20px;
+    }
+
+    .game p span {
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    #timer {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #FFD700;
+      margin-bottom: 25px;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      transition: color 0.3s ease;
+    }
+
+    .pulse-red {
+      animation: pulseRed 1s infinite alternate;
+    }
+
+    @keyframes pulseRed {
+      from {
+        color: #dc3545;
+        text-shadow: 0 0 5px rgba(220, 53, 69, 0.7);
+      }
+
+      to {
+        color: #ff6347;
+        text-shadow: 0 0 10px rgba(255, 99, 71, 0.9);
+      }
+    }
+
+    .game-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    /* Hangman SVG Styling */
+    svg {
+      width: 280px;
+      height: 280px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      border: 2px solid #7e57c2;
+    }
+
+    svg line,
+    svg circle {
+      stroke: #E0E0E0;
+      stroke-width: 5;
+      stroke-linecap: round;
+    }
+
+    /* Adjusting specific hangman parts for better appearance based on your HTML structure*/
+    /* The initial 3 gallow lines from your HTML */
+    #hangman>line:nth-child(1),
+    #hangman>line:nth-child(2),
+    #hangman>line:nth-child(3) {
+      stroke: #7e57c2;
+      /* Purple for gallow */
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    #word-display {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.5em;
+      margin-bottom: 25px;
+      letter-spacing: 12px;
+      color: #FFD700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      min-height: 1.5em;
+    }
+
+    .alphabet {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      gap: 8px;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+
+    .alphabet button {
+      padding: 12px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: 2px solid #7e57c2;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #333;
+      color: #E0E0E0;
+      transition: all 0.2s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .alphabet button.correct {
+      background: linear-gradient(to bottom right, #28a745, #1e7e34);
+      border-color: #1e7e34;
+      color: white;
+      box-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+    }
+
+    .alphabet button.incorrect {
+      background: linear-gradient(to bottom right, #dc3545, #bd2130);
+      border-color: #bd2130;
+      color: white;
+      box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
+    }
+
+    .alphabet button:hover:not(:disabled) {
+      transform: scale(1.05);
+      background: linear-gradient(to top left, #6A11CB 0%, #2575FC 100%);
+      border-color: #2575FC;
+    }
+
+    .game>div>div>button {
+      padding: 10px 15px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    #status {
+      font-size: 1.6em;
+      margin-top: 20px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .status-win {
+      color: #28a745;
+      animation: flashGreen 1s ease-in-out;
+    }
+
+    .status-lose {
+      color: #dc3545;
+      animation: flashRed 1s ease-in-out;
+    }
+
+    @keyframes flashGreen {
+
+      0%,
+      100% {
+        color: #28a745;
+        text-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
+      }
+
+      50% {
+        color: #98fb98;
+        text-shadow: 0 0 20px rgba(152, 251, 152, 1);
+      }
+    }
+
+    @keyframes flashRed {
+
+      0%,
+      100% {
+        color: #dc3545;
+        text-shadow: 0 0 10px rgba(220, 53, 69, 0.8);
+      }
+
+      50% {
+        color: #ff6347;
+        text-shadow: 0 0 20px rgba(255, 99, 71, 1);
+      }
+    }
+
+    /* --- Report Section --- */
+    .report {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .report-content {
+      background-color: rgba(30, 30, 30, 0.95);
+      color: #E0E0E0;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      border: 2px solid #7e57c2;
+      animation: zoomIn 0.5s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .report-content h2 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #FFD700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .report-content p {
+      font-size: 1.2em;
+      margin-bottom: 12px;
+      color: #B0B0B0;
+    }
+
+    .report-content p span {
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* SVG draw animation for hangman parts */
+    .animate-draw {
+      animation: draw 0.5s forwards ease-in-out;
+    }
+
+    @keyframes draw {
+      from {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+      }
+
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-height: 700px) {
+    .container {
+        max-height: 90vh; /* Limit container height for scrolling */
+    }
+    .container::after {
+        content: '';
+        position: absolute;
+        bottom: 1vw;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #FFD700;
+        animation: bounce 1s infinite;
+        display: none; /* Hidden by default */
+    }
+    .container:hover::after,
+    .container:focus-within::after {
+        display: block; /* Show on hover or focus */
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Ensure the indicator appears only when scrolling is needed */
+.container {
+    max-height: 90vh; /* Adjust based on content */
+    overflow-y: auto;
+}
+.container:not(:hover):not(:focus-within) .scroll-indicator,
+.container:not(:hover):not(:focus-within)::after {
+    display: none; /* Hide when not interacting */
+}
+
+.container:hover .scroll-indicator,
+.container:focus-within .scroll-indicator {
+    display: block; /* Show on hover or focus */
+}
+/* Responsive adjustments */
+  @media (max-width: 320px) {
+        .container { padding: 1.5vw; gap: 1rem; }
+        h1 { font-size: 3.5vw; margin-bottom: 1rem; }
+        .setup label, .setup input, .setup select { font-size: 1.8vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.2vw 2vw; font-size: 1.8vw; margin-top: 0.6rem; }
+        .game p { font-size: 1.8vw; gap: 0.4rem 0.6rem; }
+        #timer { font-size: 2.5vw; }
+        svg { width: 35vw; height: 35vw; }
+        #word-display { font-size: 4vw; }
+        .alphabet { grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr)); gap: 0.4vw; }
+        .alphabet button { padding: 1vw; font-size: 1.8vw; }
+        .game-buttons-container button { min-width: 7vw; padding: 1vw 1.5vw; font-size: 1.8vw; }
+        #status { font-size: 2.5vw; }
+        .report-content h2 { font-size: 3vw; }
+        .report-content p { font-size: 2vw; }
+    }
+
+    @media (min-width: 768px) {
+      .game-area {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .game-controls {
+        flex-grow: 1;
+        max-width: 50%;
+      }
+@media (min-width: 1440px) {
+        .container { max-width: 1000px; }
+        h1 { font-size: 40px; }
+        .setup label { font-size: 24px; }
+        .setup input, .setup select { font-size: 20px; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { font-size: 20px; }
+        .game p { font-size: 20px; }
+        #timer { font-size: 28px; }
+        svg { width: 280px; height: 280px; }
+        #word-display { font-size: 32px; }
+        .alphabet button { font-size: 20px; }
+        .game-buttons-container button { font-size: 20px; }
+        #status { font-size: 24px; }
+        .report-content h2 { font-size: 28px; }
+        .report-content p { font-size: 22px; }
+    }
+      .alphabet {
+        grid-template-columns: repeat(10, 1fr);
+      }
+
+      h1 {
+        font-size: 3.2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      .game p,
+      #timer {
+        font-size: 1em;
+        margin-bottom: 15px;
+      }
+
+      #word-display {
+        font-size: 2em;
+        letter-spacing: 8px;
+      }
+
+      .alphabet button {
+        padding: 8px;
+        font-size: 0.9em;
+      }
+
+      .setup button,
+      #hint,
+      #back,
+      #end-game,
+      #replay,
+      #submit-word,
+      #close-report {
+        padding: 12px 20px;
+        font-size: 1em;
+      }
+
+      .game>div>div>button {
+        padding: 10px 15px;
+        font-size: 1em;
+      }
+
+      .report-content h2 {
+        font-size: 1.5em;
+      }
+
+      .report-content p {
+        font-size: 1em;
+      }
+    }
+    @media (min-width: 481px) and (max-width: 768px) {
+        .container { padding: 3vw; max-width: 650px; border-radius: 1.2vw; gap: 2rem; }
+        h1 { font-size: 3.5vw; }
+        .setup label { font-size: 2.2vw; }
+        .setup input, .setup select { font-size: 2.2vw; padding: 1.5vw 1.8vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.8vw 3vw; font-size: 2.2vw; }
+        .game p { font-size: 2.2vw; }
+        #timer { font-size: 3.2vw; }
+        svg { width: 25vw; height: 25vw; max-width: 250px; max-height: 250px; }
+        #word-display { font-size: 4vw; }
+        .alphabet { grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr)); gap: 0.7vw; max-width: 400px; }
+        .alphabet button { padding: 1.2vw; font-size: 2.2vw; }
+        .game-buttons-container button { font-size: 2.2vw; }
+        #status { font-size: 3vw; }
+        .report-content { padding: 2.5vw; max-width: 400px; }
+        .report-content h2 { font-size: 3vw; }
+        .report-content p { font-size: 2.5vw; }
+    }
+
+    /* Small Desktops */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .container { padding: 3vw; max-width: 800px; gap: 2.5rem; }
+        h1 { font-size: 3vw; }
+        .setup label { font-size: 2vw; }
+        .setup input, .setup select { font-size: 2vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.5vw 2.5vw; font-size: 2vw; }
+        .game p { font-size: 2vw; }
+        #timer { font-size: 3vw; }
+        .game-area { flex-direction: row; gap: 5vw; }
+        svg { width: 20vw; height: 20vw; max-width: 280px; max-height: 280px; }
+        #word-display { font-size: 3.5vw; }
+        .alphabet { grid-template-columns: repeat(10, 1fr); gap: 0.8vw; max-width: 450px; }
+        .alphabet button { padding: 1.2vw; font-size: 2vw; }
+        .game-buttons-container { flex-wrap: nowrap; }
+        .game-buttons-container button { font-size: 2vw; }
+        #status { font-size: 2.8vw; }
+        .report-content { max-width: 450px; }
+        .report-content h2 { font-size: 2.8vw; }
+        .report-content p { font-size: 2.2vw; }
+    }
+
+    /* Very Large Screens */
+    

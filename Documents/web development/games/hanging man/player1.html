@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Challenge - One Player</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/styles/player1.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hangman Challenge - One Player</h1>
+    <div id="setup" class="setup">
+      <label for="player-name">Player Name:</label>
+      <input id="player-name" type="text" placeholder="Enter your name" aria-label="Enter player name" />
+      <div>
+        <label for="category">Category:</label>
+        <select id="category" aria-label="Select word category">
+          <option value="fruits">Fruits</option>
+          <option value="vegetables">Vegetables</option>
+          <option value="animals">Animals</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+      <button id="start-game" aria-label="Start game">Start Game</button>
+      <button id="back-to-menu" aria-label="Back to menu">Back</button>
+    </div>
+    <div id="game" class="game hidden">
+      <p>Player: <span id="player-display"></span> | Points: <span id="points">0</span> | Wins: <span id="wins">0</span>
+        | Losses: <span id="losses">0</span> | Level: <span id="difficulty-display">Easy</span></p>
+      <p>Time Left: <span id="timer">15:00</span></p>
+      <div class="game-area">
+        <svg id="hangman" viewBox="0 0 300 300">
+          <line x1="50" y1="250" x2="150" y2="250" stroke="black" stroke-width="4" />
+          <line x1="100" y1="250" x2="100" y2="20" stroke="black" stroke-width="4" />
+          <line x1="100" y1="20" x2="150" y2="20" stroke="black" stroke-width="4" />
+        </svg>
+        <div>
+          <div id="word-display" class="word-display"></div>
+          <div id="alphabet" class="alphabet"></div>
+          <div>
+
+            <div class="game-buttons-container">
+              <button id="hint">Hint</button>
+              <button id="back">Back</button>
+              <!-- <button id="end-game">End Game</button> -->
+            <p id="status" role="alert"></p>
+            <button id="replay" class="hidden" aria-label="Play again">Play Again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="report" class="report hidden">
+        <div class="report-content">
+          <h2>Game Report</h2>
+          <p>Player: <span id="report-player"></span></p>
+          <p>Wins: <span id="report-wins"></span></p>
+          <p>Losses: <span id="report-losses"></span></p>
+          <p>Points: <span id="report-points"></span></p>
+          <button id="close-report" aria-label="Close report and return to setup">Close</button>
+        </div>
+      </div>
+    </div>
+    <script src="/app/player1.js"></script>
+</body>
+</html>

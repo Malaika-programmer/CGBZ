@@ -1,0 +1,681 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif; /* Consistent font with main menu */
+    color: #E0E0E0; /* Lighter grey for better contrast */
+    text-align: center;
+    overflow: hidden; /* Prevent scrollbar from background effects */
+    position: relative; /* For positioning overlay */
+    background: url(/image/bg.png); /* Ensure this path is correct if it's an actual image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Background overlay for a richer, atmospheric look */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Apply gradient AND the image, then blur the entire overlay */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%), url('image/bg.png'); /* Ensure this path is correct */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* Add a blur filter */
+    z-index: -1; /* Place behind content */
+}
+
+.container {
+    background-color: rgba(20, 20, 20, 0.85); /* Darker, almost black with slight transparency */
+    padding: 40px; /* Increased padding */
+    border-radius: 15px; /* More rounded corners */
+    max-width: 900px; /* Wider container for game elements */
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger, more defined shadow */
+    border: 1px solid rgba(70, 70, 70, 0.5); /* Subtle border for definition */
+    animation: fadeIn 1s ease-out; /* Fade-in animation for container */
+    position: relative; /* Ensure container content is above the blurred overlay */
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Typography --- */
+h1 { /* Changed from .game-title to h1 as per your HTML */
+    font-family: 'Press Start 2P', cursive; /* Retro game-style font */
+    font-size: 2.8em; /* Slightly smaller than main menu for content space */
+    margin-bottom: 30px;
+    color: #FFD700; /* Gold color for highlight */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 0 5px rgba(255, 215, 0, 0.8); /* Glow effect */
+    letter-spacing: 2px;
+}
+
+/* --- Setup Section --- */
+.setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Spacing between elements */
+    padding-bottom: 20px;
+}
+
+.setup label { /* Changed from .input-label to .setup label as per your HTML */
+    font-size: 1.2em;
+    color: #FFD700; /* Gold color for labels */
+    margin-bottom: 5px;
+}
+
+.setup input, .setup select { /* Changed from .game-input, .game-select */
+    padding: 12px 15px;
+    font-size: 1.1em;
+    border: 1px solid #7e57c2; /* Purple border */
+    border-radius: 8px;
+    background-color: rgba(40, 40, 40, 0.9); /* Darker input background */
+    color: #E0E0E0;
+    width: 80%; /* Adjust width for better fit */
+    max-width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.setup input:focus, .setup select:focus {
+    outline: none;
+    border-color: #2575FC; /* Blue on focus */
+    box-shadow: 0 0 10px rgba(37, 117, 252, 0.6);
+}
+
+.setup > div { /* For category label and select */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- Buttons (General Styling) --- */
+.setup button, #hint, #back, #end-game, #replay, #close-report { /* Target all buttons */
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px; /* Added margin for spacing in setup */
+}
+
+/* Specific button styles */
+#start-game, #replay, #close-report { /* Primary buttons */
+    background: linear-gradient(to right, #6A11CB 0%, #2575FC 100%);
+}
+
+#back-to-menu, #back { /* Secondary buttons */
+    background: linear-gradient(to right, #6c757d 0%, #495057 100%); /* Grey gradient */
+}
+
+#hint { /* Hint button */
+    background: linear-gradient(to right, #ffc107 0%, #e0a800 100%); /* Yellow gradient for hint */
+    color: #333; /* Dark text for contrast */
+}
+
+#end-game { /* End Game button */
+    background: linear-gradient(to right, #dc3545 0%, #bd2130 100%); /* Red gradient for end game */
+}
+
+/* Button Hover Effects */
+.setup button:hover, #hint:hover:not(:disabled), #back:hover, #end-game:hover, #replay:hover, #close-report:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+}
+
+#start-game:hover, #replay:hover, #close-report:hover {
+    background: linear-gradient(to right, #2575FC 0%, #6A11CB 100%);
+}
+
+#back-to-menu:hover, #back:hover {
+    background: linear-gradient(to right, #495057 0%, #6c757d 100%);
+}
+
+#hint:hover:not(:disabled) {
+    background: linear-gradient(to right, #e0a800 0%, #ffc107 100%);
+}
+
+#end-game:hover {
+    background: linear-gradient(to right, #bd2130 0%, #dc3545 100%);
+}
+
+.setup button::before, #hint::before, #back::before, #end-game::before, #replay::before, #close-report::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Light shiner effect */
+    transform: skewX(-20deg);
+    transition: left 0.4s ease-in-out;
+}
+
+.setup button:hover::before, #hint:hover::before, #back:hover::before, #end-game:hover::before, #replay:hover::before, #close-report:hover::before {
+    left: 100%;
+}
+
+/* Disabled button state */
+#hint:disabled, .alphabet button:disabled {
+    background-color: #555 !important; /* Darker grey for disabled */
+    color: #AAA !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+    border-color: #555 !important;
+    box-shadow: none !important;
+    transform: none !important; /* Prevent hover animation on disabled */
+}
+#hint:disabled::before, .alphabet button:disabled::before {
+    display: none; /* Hide shiner effect on disabled */
+}
+
+
+/* --- Game Section --- */
+.game p { /* General paragraph in game section (player stats, timer) */
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #B0B0B0;
+    display: flex;
+    flex-wrap: wrap; /* Allow stats to wrap on smaller screens */
+    justify-content: center;
+    gap: 10px 20px; /* Row and column gap */
+}
+
+.game p span { /* Span for stat values */
+    color: #FFD700; /* Gold for stat values */
+    font-weight: bold;
+}
+
+#timer { /* Specific timer styling */
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #FFD700; /* Gold for timer */
+    margin-bottom: 25px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.pulse-red {
+    animation: pulseRed 1s infinite alternate;
+}
+
+@keyframes pulseRed {
+    from { color: #dc3545; text-shadow: 0 0 5px rgba(220, 53, 69, 0.7); }
+    to { color: #ff6347; text-shadow: 0 0 10px rgba(255, 99, 71, 0.9); }
+}
+.game-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+.game-buttons-container button {
+    flex-grow: 1; /* Allows buttons to grow and fill space */
+    min-width: 120px; /* Minimum width for buttons to prevent squishing */
+    max-width: 180px; /* Max width to keep them from becoming too large */
+    /* Inherit general button styles, no need to duplicate padding/font-size here unless specific override */
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Increased gap between SVG and controls */
+}
+
+/* Hangman SVG Styling */
+svg {
+    width: 280px; /* Slightly larger SVG */
+    height: 280px;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background for SVG */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7e57c2; /* Purple border for the SVG canvas */
+}
+
+svg line, svg circle {
+    stroke: #E0E0E0; /* Lighter color for hangman lines */
+    stroke-width: 5; /* Thicker lines for visibility */
+    stroke-linecap: round; /* Rounded ends for lines */
+}
+
+/* Adjusting specific hangman parts for better appearance based on your HTML structure*/
+/* The initial 3 gallow lines from your HTML */
+#hangman > line:nth-child(1),
+#hangman > line:nth-child(2),
+#hangman > line:nth-child(3) {
+    stroke: #7e57c2; /* Purple for gallow */
+    stroke-width: 6;
+    stroke-linecap: round;
+}
+
+
+#word-display {
+    font-family: 'Press Start 2P', cursive; /* Retro font for word display */
+    font-size: 2.5em; /* Larger word display */
+    margin-bottom: 25px;
+    letter-spacing: 12px; /* Wider letter spacing */
+    color: #FFD700; /* Gold for the word */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    min-height: 1.5em; /* Ensure consistent height even when empty */
+}
+
+.alphabet {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Responsive grid */
+    gap: 8px; /* Slightly larger gap for buttons */
+    max-width: 500px; /* Wider alphabet area */
+    margin-bottom: 25px;
+}
+
+.alphabet button { /* Target all alphabet buttons */
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 2px solid #7e57c2; /* Purple border */
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #333; /* Dark background for un-guessed letters */
+    color: #E0E0E0;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alphabet button.correct {
+    background: linear-gradient(to bottom right, #28a745, #1e7e34); /* Green gradient */
+    border-color: #1e7e34;
+    color: white;
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.6); /* Green glow */
+}
+
+.alphabet button.incorrect {
+    background: linear-gradient(to bottom right, #dc3545, #bd2130); /* Red gradient */
+    border-color: #bd2130;
+    color: white;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.6); /* Red glow */
+}
+
+.alphabet button:hover:not(:disabled) {
+    transform: scale(1.05); /* Pop out effect */
+    background: linear-gradient(to top left, #6A11CB 0%, #2575FC 100%); /* Primary button hover gradient */
+    border-color: #2575FC;
+}
+
+/* New: Flex container for hint, back, end-game buttons */
+.game-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+
+.game-buttons-container button {
+    flex-grow: 1; /* Allows buttons to grow and fill space */
+    min-width: 120px; /* Minimum width for buttons to prevent squishing */
+    max-width: 180px; /* Max width to keep them from becoming too large */
+}
+
+
+#status { /* Changed from .game-status to #status as per your HTML */
+    font-size: 1.6em;
+    margin-top: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.status-win {
+    color: #28a745; /* Green for win */
+    animation: flashGreen 1s ease-in-out;
+}
+
+.status-lose {
+    color: #dc3545; /* Red for lose */
+    animation: flashRed 1s ease-in-out;
+}
+
+@keyframes flashGreen {
+    0%, 100% { color: #28a745; text-shadow: 0 0 10px rgba(40, 167, 69, 0.8); }
+    50% { color: #98fb98; text-shadow: 0 0 20px rgba(152, 251, 152, 1); }
+}
+
+@keyframes flashRed {
+    0%, 100% { color: #dc3545; text-shadow: 0 0 10px rgba(220, 53, 69, 0.8); }
+    50% { color: #ff6347; text-shadow: 0 0 20px rgba(255, 99, 71, 1); }
+}
+
+/* --- Report Section --- */
+.report {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* More opaque background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Ensure it's on top */
+}
+
+.report-content {
+    background-color: rgba(30, 30, 30, 0.95); /* Darker background for report content */
+    color: #E0E0E0;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    border: 2px solid #7e57c2; /* Purple border */
+    animation: zoomIn 0.5s ease-out; /* Animation for report popup */
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.report-content h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.report-content p {
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    color: #B0B0B0;
+}
+
+.report-content p span { /* Span for report stats */
+    font-weight: bold;
+    color: #FFD700; /* Gold for report stats */
+}
+
+.hidden {
+    display: none;
+}
+
+/* SVG draw animation for hangman parts */
+.animate-draw {
+    animation: draw 0.5s forwards ease-in-out;
+}
+
+@keyframes draw {
+    from {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+/* Add this to the existing <style> block */
+
+/* Scroll Down Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 1vw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    display: none; /* Hidden by default */
+}
+
+.scroll-indicator::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    animation: scrollAnimation 1.5s infinite;
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    50% { transform: translate(-50%, 10px); opacity: 0.5; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Show indicator when content overflows */
+.container {
+    overflow-y: auto; /* Enable scrolling when content overflows */
+    position: relative; /* Ensure indicator positioning works */
+}
+
+/* Show the indicator when the container's height exceeds viewport height */
+@media (max-height: 700px) {
+    .container {
+        max-height: 90vh; /* Limit container height for scrolling */
+    }
+    .container::after {
+        content: '';
+        position: absolute;
+        bottom: 1vw;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #FFD700;
+        animation: bounce 1s infinite;
+        display: none; /* Hidden by default */
+    }
+    .container:hover::after,
+    .container:focus-within::after {
+        display: block; /* Show on hover or focus */
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Ensure the indicator appears only when scrolling is needed */
+.container {
+    max-height: 90vh; /* Adjust based on content */
+    overflow-y: auto;
+}
+.container:not(:hover):not(:focus-within) .scroll-indicator,
+.container:not(:hover):not(:focus-within)::after {
+    display: none; /* Hide when not interacting */
+}
+
+.container:hover .scroll-indicator,
+.container:focus-within .scroll-indicator {
+    display: block; /* Show on hover or focus */
+}
+/* Responsive adjustments */
+  @media (max-width: 320px) {
+        .container { padding: 1.5vw; gap: 1rem; }
+        h1 { font-size: 3.5vw; margin-bottom: 1rem; }
+        .setup label, .setup input, .setup select { font-size: 1.8vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.2vw 2vw; font-size: 1.8vw; margin-top: 0.6rem; }
+        .game p { font-size: 1.8vw; gap: 0.4rem 0.6rem; }
+        #timer { font-size: 2.5vw; }
+        svg { width: 35vw; height: 35vw; }
+        #word-display { font-size: 4vw; }
+        .alphabet { grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr)); gap: 0.4vw; }
+        .alphabet button { padding: 1vw; font-size: 1.8vw; }
+        .game-buttons-container button { min-width: 7vw; padding: 1vw 1.5vw; font-size: 1.8vw; }
+        #status { font-size: 2.5vw; }
+        .report-content h2 { font-size: 3vw; }
+        .report-content p { font-size: 2vw; }
+    }
+
+@media (min-width: 768px) {
+    .game-area {
+        flex-direction: row; /* Side-by-side layout for game area */
+        justify-content: center;
+        align-items: flex-start; /* Align items to the top */
+    }
+
+    .game-controls { /* Wrap game controls in a div if needed for this flex layout */
+        flex-grow: 1; /* Allow controls to take available space */
+        max-width: 50%; /* Control width on larger screens */
+    }
+    
+    .alphabet {
+        grid-template-columns: repeat(10, 1fr); /* More columns for alphabet on wider screens */
+    }
+
+    h1 {
+        font-size: 3.2em;
+    }
+    .game-buttons-container {
+        flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 25px;
+        border-radius: 10px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .game p, #timer {
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+    #word-display {
+        font-size: 2em;
+        letter-spacing: 8px;
+    }
+    .alphabet button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .setup button, #replay, #close-report {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    .game-buttons-container button { /* Specific targeting for the hint, back, end game buttons */
+        padding: 12px 18px; /* Slightly more padding for better touch targets */
+        font-size: 0.9em; /* Further reduce font size for smaller screens */
+        margin: 5px; /* Adjust margin for better spacing on small screens */
+        flex-basis: 45%; /* Allow two buttons per row */
+        max-width: unset; /* Remove max-width on small screens */
+    }
+    .report-content h2 {
+        font-size: 1.5em;
+    }
+    .report-content p {
+        font-size: 1em;
+    }
+}
+   @media (min-width: 481px) and (max-width: 768px) {
+        .container { padding: 3vw; max-width: 650px; border-radius: 1.2vw; gap: 2rem; }
+        h1 { font-size: 3.5vw; }
+        .setup label { font-size: 2.2vw; }
+        .setup input, .setup select { font-size: 2.2vw; padding: 1.5vw 1.8vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.8vw 3vw; font-size: 2.2vw; }
+        .game p { font-size: 2.2vw; }
+        #timer { font-size: 3.2vw; }
+        svg { width: 25vw; height: 25vw; max-width: 250px; max-height: 250px; }
+        #word-display { font-size: 4vw; }
+        .alphabet { grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr)); gap: 0.7vw; max-width: 400px; }
+        .alphabet button { padding: 1.2vw; font-size: 2.2vw; }
+        .game-buttons-container button { font-size: 2.2vw; }
+        #status { font-size: 3vw; }
+        .report-content { padding: 2.5vw; max-width: 400px; }
+        .report-content h2 { font-size: 3vw; }
+        .report-content p { font-size: 2.5vw; }
+    }
+
+    /* Small Desktops */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .container { padding: 3vw; max-width: 800px; gap: 2.5rem; }
+        h1 { font-size: 3vw; }
+        .setup label { font-size: 2vw; }
+        .setup input, .setup select { font-size: 2vw; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.5vw 2.5vw; font-size: 2vw; }
+        .game p { font-size: 2vw; }
+        #timer { font-size: 3vw; }
+        .game-area { flex-direction: row; gap: 5vw; }
+        svg { width: 20vw; height: 20vw; max-width: 280px; max-height: 280px; }
+        #word-display { font-size: 3.5vw; }
+        .alphabet { grid-template-columns: repeat(10, 1fr); gap: 0.8vw; max-width: 450px; }
+        .alphabet button { padding: 1.2vw; font-size: 2vw; }
+        .game-buttons-container { flex-wrap: nowrap; }
+        .game-buttons-container button { font-size: 2vw; }
+        #status { font-size: 2.8vw; }
+        .report-content { max-width: 450px; }
+        .report-content h2 { font-size: 2.8vw; }
+        .report-content p { font-size: 2.2vw; }
+    }
+
+    /* Large Desktops */
+    /* @media (min-width: 1025px) {
+        .container { padding: 4vw; max-width: 900px; border-radius: 1.5vw; gap: 2.5rem; }
+        h1 { font-size: 2.8vw; margin-bottom: 3vw; }
+        .setup { gap: 2vw; padding-bottom: 2vw; }
+        .setup label { font-size: 1.8vw; text-align: center; }
+        .setup input, .setup select { font-size: 1.8vw; padding: 1.2vw 1.5vw; max-width: 300px; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { padding: 1.5vw 3vw; font-size: 1.8vw; }
+        .game { gap: 2vw; }
+        .game p { font-size: 1.8vw; margin-bottom: 2vw; }
+        #timer { font-size: 2.5vw; margin-bottom: 2.5vw; }
+        .game-area { gap: 5vw; }
+        svg { width: 20vw; height: 20vw; }
+        #word-display { font-size: 2.5vw; letter-spacing: 1.2vw; }
+        .alphabet { gap: 0.8vw; max-width: 500px; }
+        .alphabet button { padding: 1.2vw; font-size: 1.8vw; }
+        .game-buttons-container button { font-size: 1.8vw; }
+        #status { font-size: 2.5vw; margin-top: 2vw; }
+        .report-content { padding: 3vw; max-width: 550px; }
+        .report-content h2 { font-size: 2.5vw; }
+        .report-content p { font-size: 2vw; }
+    } */
+
+    /* Very Large Screens */
+    @media (min-width: 1440px) {
+        .container { max-width: 1000px; }
+        h1 { font-size: 40px; }
+        .setup label { font-size: 24px; }
+        .setup input, .setup select { font-size: 20px; }
+        .setup button, #hint, #back, #end-game, #replay, #close-report { font-size: 20px; }
+        .game p { font-size: 20px; }
+        #timer { font-size: 28px; }
+        svg { width: 280px; height: 280px; }
+        #word-display { font-size: 32px; }
+        .alphabet button { font-size: 20px; }
+        .game-buttons-container button { font-size: 20px; }
+        #status { font-size: 24px; }
+        .report-content h2 { font-size: 28px; }
+        .report-content p { font-size: 22px; }
+    }

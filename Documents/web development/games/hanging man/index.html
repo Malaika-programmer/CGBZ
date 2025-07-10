@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  <div class="background-overlay"></div>
+  <div class="container">
+    <h1 class="game-title">Hangman's Challenge</h1>
+    <p class="tagline">Guess the word before time runs out!</p>
+    <div class="buttons">
+      <button class="game-button" onclick="window.location.href='player1.html'" aria-label="Play one player mode">
+        <span class="button-text">One Player</span>
+        <span class="icon">👤</span>
+      </button>
+      <button class="game-button two-player" onclick="window.location.href='player2.html'" aria-label="Play two player mode">
+        <span class="button-text">Two Player</span>
+        <span class="icon">👥</span>
+      </button>
+    </div>
+    <p class="footer-text">Test your vocabulary and strategic thinking!</p>
+  </div>
+</body>
+</html>
