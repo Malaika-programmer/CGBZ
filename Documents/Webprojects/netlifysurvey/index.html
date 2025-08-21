@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Institute Website Requirements</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            color: #555;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        input[type="text"], input[type="email"], input[type="date"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .popup-content h2 {
+            color: #28a745;
+            border-bottom: none;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AK Institute Website Requirements Survey</h1>
+    <form name="contact" netlify netlify-honeypot="bot-field">
+        
+        <input type="hidden" name="form-name" value="contact">
+
+        <p style="display: none;">
+            <label>Don’t fill this out if you’re a human: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <h2>1. General / Business Requirements</h2>
+        <div class="form-group">
+            <label for="budget">What is your budget?</label>
+            <input type="text" id="budget" name="budget" placeholder="e.g., $1000 - $5000">
+        </div>
+        <div class="form-group">
+            <label for="deadline">What is your expected deadline?</label>
+            <input type="date" id="deadline" name="deadline">
+        </div>
+        <div class="form-group">
+            <label>Do you prefer multi-language support (e.g., English + Urdu)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="multi_language" value="Yes" required> Yes</label>
+                <label><input type="radio" name="multi_language" value="No" required> No</label>
+            </div>
+        </div>
+
+        <h2>2. Front-End / UI & UX</h2>
+        <div class="form-group">
+            <label>Do you want a modern, minimal design or more traditional/academic look?</label>
+            <div class="options-list">
+                <label><input type="radio" name="design_style" value="Modern, minimal"> Modern, minimal</label>
+                <label><input type="radio" name="design_style" value="Traditional/academic"> Traditional/academic</label>
+                <label><input type="radio" name="design_style" value="A mix of both"> A mix of both</label>
+                <label><input type="radio" name="design_style" value="Undecided"> Undecided</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Which sections/pages do you want on the homepage? (Select all that apply)</label>
+            <div class="options-list">
+                <label><input type="checkbox" name="homepage_sections" value="About"> About</label>
+                <label><input type="checkbox" name="homepage_sections" value="Programs"> Programs</label>
+                <label><input type="checkbox" name="homepage_sections" value="News"> News</label>
+                <label><input type="checkbox" name="homepage_sections" value="Events"> Events</label>
+                <label><input type="checkbox" name="homepage_sections" value="Testimonials"> Testimonials</label>
+                <label><input type="checkbox" name="homepage_sections" value="Contact"> Contact</label>
+                <label>Other: <input type="text" name="homepage_sections_other"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should the website be **responsive** for mobile, tablet, and desktop?</label>
+            <div class="options-list">
+                <label><input type="radio" name="responsive" value="Yes, for all devices"> Yes, for all devices</label>
+                <label><input type="radio" name="responsive" value="No, only for desktop"> No, only for desktop</label>
+                <label><input type="radio" name="responsive" value="Not a priority"> Not a priority</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need an image/video gallery?</label>
+            <div class="options-list">
+                <label><input type="radio" name="gallery" value="Yes"> Yes</label>
+                <label><input type="radio" name="gallery" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should the homepage include animations, sliders, or banners?</label>
+            <div class="options-list">
+                <label><input type="checkbox" name="homepage_features" value="Animations"> Animations</label>
+                <label><input type="checkbox" name="homepage_features" value="Sliders/Banners"> Sliders/Banners</label>
+                <label><input type="checkbox" name="homepage_features" value="Both"> Both</label>
+                <label><input type="checkbox" name="homepage_features" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>3. Functional Requirements (Front + Back End)</h2>
+        <div class="form-group">
+            <label>Should students be able to **view courses/programs** with details?</label>
+            <div class="options-list">
+                <label><input type="radio" name="view_courses" value="Yes"> Yes</label>
+                <label><input type="radio" name="view_courses" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should there be **online admission form** submission?</label>
+            <div class="options-list">
+                <label><input type="radio" name="online_admission" value="Yes"> Yes</label>
+                <label><input type="radio" name="online_admission" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want **course filters** (by category, duration, level)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="course_filters" value="Yes"> Yes</label>
+                <label><input type="radio" name="course_filters" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should users be able to **download brochures/forms**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="download_forms" value="Yes"> Yes</label>
+                <label><input type="radio" name="download_forms" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want login/signup for: (Select all that apply)</label>
+            <div class="options-list">
+                <label><input type="checkbox" name="login_roles" value="Students"> Students</label>
+                <label><input type="checkbox" name="login_roles" value="Teachers/Faculty"> Teachers/Faculty</label>
+                <label><input type="checkbox" name="login_roles" value="Admin"> Admin</label>
+                <label><input type="checkbox" name="login_roles" value="None"> None</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should users log in via email/password, phone, or social logins?</label>
+            <div class="options-list">
+                <label><input type="radio" name="login_method" value="Email/password"> Email/password</label>
+                <label><input type="radio" name="login_method" value="Phone"> Phone</label>
+                <label><input type="radio" name="login_method" value="Social logins"> Social logins</label>
+                <label><input type="radio" name="login_method" value="All of the above"> All of the above</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do students need a **dashboard** to track admissions, fees, and courses?</label>
+            <div class="options-list">
+                <label><input type="radio" name="student_dashboard" value="Yes"> Yes</label>
+                <label><input type="radio" name="student_dashboard" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want **online payment integration**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="online_payments" value="Yes, local gateways only"> Yes, local gateways only</label>
+                <label><input type="radio" name="online_payments" value="Yes, international gateways only"> Yes, international gateways only</label>
+                <label><input type="radio" name="online_payments" value="Both local and international"> Both local and international</label>
+                <label><input type="radio" name="online_payments" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should the system generate **invoices/receipts** automatically?</label>
+            <div class="options-list">
+                <label><input type="radio" name="invoices" value="Yes"> Yes</label>
+                <label><input type="radio" name="invoices" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need a blog/news/events section that the admin can update?</label>
+            <div class="options-list">
+                <label><input type="radio" name="blog" value="Yes"> Yes</label>
+                <label><input type="radio" name="blog" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should events have a registration option?</label>
+            <div class="options-list">
+                <label><input type="radio" name="event_registration" value="Yes"> Yes</label>
+                <label><input type="radio" name="event_registration" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want live chat support?</label>
+            <div class="options-list">
+                <label><input type="radio" name="live_chat" value="Yes, WhatsApp"> Yes, WhatsApp</label>
+                <label><input type="radio" name="live_chat" value="Yes, Messenger"> Yes, Messenger</label>
+                <label><input type="radio" name="live_chat" value="Yes, a custom chat feature"> Yes, a custom chat feature</label>
+                <label><input type="radio" name="live_chat" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should there be an FAQ section?</label>
+            <div class="options-list">
+                <label><input type="radio" name="faq" value="Yes"> Yes</label>
+                <label><input type="radio" name="faq" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>4. Back-End (Django + Database)</h2>
+        <div class="form-group">
+            <label>Who will manage the website (admin roles)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="admin_management" value="Our internal staff"> Our internal staff</label>
+                <label><input type="radio" name="admin_management" value="Your development team"> Your development team</label>
+                <label><input type="radio" name="admin_management" value="A third-party manager"> A third-party manager</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need an **admin dashboard** to manage: (Select all that apply)</label>
+            <div class="options-list">
+                <label><input type="checkbox" name="admin_dashboard_items" value="Courses/Programs"> Courses/Programs</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="Students"> Students</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="Teachers"> Teachers</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="Admissions"> Admissions</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="Payments"> Payments</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="News/Events/Blog posts"> News/Events/Blog posts</label>
+                <label><input type="checkbox" name="admin_dashboard_items" value="None"> None</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we keep logs of student activities (login history, form submissions)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="student_logs" value="Yes"> Yes</label>
+                <label><input type="radio" name="student_logs" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want **role-based permissions** (e.g., admin, editor, teacher)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="role_based_permissions" value="Yes"> Yes</label>
+                <label><input type="radio" name="role_based_permissions" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you require data export/import (Excel, PDF, CSV)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="data_export_import" value="Yes, both export and import"> Yes, both export and import</label>
+                <label><input type="radio" name="data_export_import" value="Yes, only export"> Yes, only export</label>
+                <label><input type="radio" name="data_export_import" value="Yes, only import"> Yes, only import</label>
+                <label><input type="radio" name="data_export_import" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>5. Database (MySQL)</h2>
+        <div class="form-group">
+            <label>Which data should be stored? (Select all that apply)</label>
+            <div class="options-list">
+                <label><input type="checkbox" name="data_to_store" value="Students"> Students</label>
+                <label><input type="checkbox" name="data_to_store" value="Teachers"> Teachers</label>
+                <label><input type="checkbox" name="data_to_store" value="Courses"> Courses</label>
+                <label><input type="checkbox" name="data_to_store" value="Payments"> Payments</label>
+                <label><input type="checkbox" name="data_to_store" value="Inquiries"> Inquiries</label>
+                <label><input type="checkbox" name="data_to_store" value="Results"> Results</label>
+                <label>Other: <input type="text" name="data_to_store_other"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need to track **student performance/grades**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="track_performance" value="Yes"> Yes</label>
+                <label><input type="radio" name="track_performance" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should student records be searchable and filterable in the admin dashboard?</label>
+            <div class="options-list">
+                <label><input type="radio" name="searchable_records" value="Yes"> Yes</label>
+                <label><input type="radio" name="searchable_records" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need **archiving** (e.g., old students/courses)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="archiving" value="Yes"> Yes</label>
+                <label><input type="radio" name="archiving" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>6. APIs / Integrations</h2>
+        <div class="form-group">
+            <label>Do you want integration with external LMS?</label>
+            <div class="options-list">
+                <label><input type="radio" name="lms_integration" value="Yes"> Yes</label>
+                <label><input type="radio" name="lms_integration" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we provide an **API for mobile app** (future)?</label>
+            <div class="options-list">
+                <label><input type="radio" name="mobile_app_api" value="Yes"> Yes</label>
+                <label><input type="radio" name="mobile_app_api" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want to integrate email marketing tools?</label>
+            <div class="options-list">
+                <label><input type="radio" name="email_marketing" value="Yes"> Yes</label>
+                <label><input type="radio" name="email_marketing" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want SMS notifications?</label>
+            <div class="options-list">
+                <label><input type="radio" name="sms_notifications" value="Yes"> Yes</label>
+                <label><input type="radio" name="sms_notifications" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>7. Security</h2>
+        <div class="form-group">
+            <label>Do you want **SSL/HTTPS** setup?</label>
+            <div class="options-list">
+                <label><input type="radio" name="ssl_https" value="Yes"> Yes</label>
+                <label><input type="radio" name="ssl_https" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we implement **two-factor authentication (2FA)** for logins?</label>
+            <div class="options-list">
+                <label><input type="radio" name="2fa" value="Yes"> Yes</label>
+                <label><input type="radio" name="2fa" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you need **CAPTCHA** on forms to avoid spam?</label>
+            <div class="options-list">
+                <label><input type="radio" name="captcha" value="Yes"> Yes</label>
+                <label><input type="radio" name="captcha" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we add data backup & recovery system?</label>
+            <div class="options-list">
+                <label><input type="radio" name="backup_recovery" value="Yes"> Yes</label>
+                <label><input type="radio" name="backup_recovery" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>9. Future Scalability</h2>
+        <div class="form-group">
+            <label>Do you plan to expand into **online classes / e-learning**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="online_classes" value="Yes"> Yes</label>
+                <label><input type="radio" name="online_classes" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we prepare the system for a **mobile app integration** in future?</label>
+            <div class="options-list">
+                <label><input type="radio" name="mobile_app_preparation" value="Yes"> Yes</label>
+                <label><input type="radio" name="mobile_app_preparation" value="No"> No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want a **multi-campus system**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="multi_campus" value="Yes"> Yes</label>
+                <label><input type="radio" name="multi_campus" value="No"> No</label>
+            </div>
+        </div>
+
+        <h2>10. Deployment & Maintenance</h2>
+        <div class="form-group">
+            <label>Do you already have hosting/server, or should we provide recommendations?</label>
+            <div class="options-list">
+                <label><input type="radio" name="hosting" value="We have our own"> We have our own</label>
+                <label><input type="radio" name="hosting" value="We need recommendations"> We need recommendations</label>
+                <label><input type="radio" name="hosting" value="We want you to provide and manage the hosting"> We want you to provide and manage the hosting</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you want the website hosted on **cloud (AWS, DigitalOcean, etc.)**?</label>
+            <div class="options-list">
+                <label><input type="radio" name="cloud_hosting" value="Yes"> Yes</label>
+                <label><input type="radio" name="cloud_hosting" value="No"> No</label>
+                <label><input type="radio" name="cloud_hosting" value="We are open to suggestions"> We are open to suggestions</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Who will maintain and update the website after launch?</label>
+            <div class="options-list">
+                <label><input type="radio" name="maintenance" value="Our team"> Our team</label>
+                <label><input type="radio" name="maintenance" value="Your team"> Your team</label>
+                <label><input type="radio" name="maintenance" value="Both teams will collaborate"> Both teams will collaborate</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Should we provide **training** for your staff to use the admin dashboard?</label>
+            <div class="options-list">
+                <label><input type="radio" name="training" value="Yes"> Yes</label>
+                <label><input type="radio" name="training" value="No"> No</label>
+            </div>
+        </div>
+        
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<div id="popup-success" class="popup">
+    <div class="popup-content">
+        <span class="close-button">&times;</span>
+        <h2>Form Submitted Successfully! 🎉</h2>
+        <p>Thank you for providing your requirements. We will review your submission and get back to you shortly.</p>
+    </div>
+</div>
+
+<script>
+    const form = document.querySelector('form');
+    const popup = document.getElementById('popup-success');
+    const closeBtn = document.querySelector('.close-button');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        
+        const formData = new FormData(form);
+        try {
+            // **FIXED:** The fetch URL is now a direct path to the current page.
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            });
+
+            if (response.ok) {
+                popup.style.display = 'block';
+                form.reset();
+            } else {
+                alert("There was an issue with your submission. Please try again.");
+            }
+        } catch (error) {
+            alert("Network error. Please check your connection and try again.");
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
